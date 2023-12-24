@@ -1,0 +1,27 @@
+pipeline{
+     agent any
+     options{
+         buildDiscarder(logRotator(numToKeepStr: '20'))
+         disableConcurrentBuilds()
+         timeout(time:1 ,unit: 'MINUTES')
+         retry(3)
+         timestamps()
+     }
+     stages{
+         stage('clone'){
+             steps{
+                 echo 'testing clone'
+                 /*print book_name
+                 print stage_name
+                 print env_name*/
+             }
+         }
+         stage('testing'){
+             steps{
+                 echo 'testing agent'
+                 echo "$BUILD_NUMBER"
+                 print BUILD_ID
+                }
+         }
+     }
+ }

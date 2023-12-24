@@ -1,0 +1,45 @@
+user defined
+pipeline{
+     agent any
+     environment{
+         tool = 'jenkins'
+     }
+     stages{
+         stage('clone'){
+             steps{
+                 echo 'testing clone'
+             }
+         }
+         stage('testing'){
+             steps{
+                 echo 'testing agent'
+                 echo "$BUILD_NUMBER"
+                 print BUILD_ID
+                 echo "the current tool is $tool"
+             }
+         }
+     }
+ }
+
+
+
+
+ predefined
+ pipeline{
+     agent any
+     stages{
+         stage('clone'){
+             steps{
+                 echo 'testing clone'
+             }
+         }
+         stage('testing'){
+             steps{
+                 echo 'testing agent'
+                 echo "$BUILD_NUMBER"
+                 print BUILD_ID
+
+             }
+         }
+     }
+ }

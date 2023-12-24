@@ -1,0 +1,16 @@
+ pipeline{
+     agent any
+     stages{
+         stage('clone'){
+             steps{
+                 echo 'testing clone'
+             }
+         }
+         stage('testing'){
+             steps{
+                 echo 'testing agent'
+                 sleep 150
+             }
+         }
+     }
+ }

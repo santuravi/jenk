@@ -1,0 +1,28 @@
+pipeline{
+     agent any
+     options{
+         timestamps()
+     }
+     stages{
+         stage('parallel execution'){
+             parallel{
+                 stage('parallel1'){
+                     steps{
+                         echo 'stage1 running'
+                         sleep 3
+                         echo 'stage2 running'
+                         sleep 3
+                     }
+                 }
+                 stage('parallel2'){
+                     steps{
+                         echo 'stage1 running'
+                         sleep 3
+                         echo 'stage2 running'
+                         sleep 3
+                     }
+                 }
+             }
+         }
+     }
+ }

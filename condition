@@ -1,0 +1,29 @@
+when expression
+
+pipeline{
+     agent any
+     parameters{
+         string(name:'book_name' ,defaultValue:'' ,description:'')
+         booleanParam(name:'stage_name' ,defaultValue: '' ,description: '')
+         choice(name:'env_name' ,choices:['dev','QA','prod','UAT'] ,description: '')
+     }
+     stages{
+         stage('clone'){
+             when { expression { env_name == 'QA' } }
+             steps{
+                 echo 'testing clone'
+                 print book_name
+                 print stage_name
+                 print env_name
+             }
+         }
+         stage('testing'){
+             when { expression { env_name == 'UAT' } }
+             steps{
+                 echo 'testing agent'
+                 echo "$BUILD_NUMBER"
+                 print BUILD_ID
+                }
+         }
+     }
+     }

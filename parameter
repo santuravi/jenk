@@ -1,0 +1,25 @@
+pipeline{
+     agent any
+     parameters{
+         string(name:'book_name' ,defaultValue:'' ,description:'')
+         booleanParam(name:'stage_name' ,defaultValue: '' ,description: '')
+         choice(name:'env_name' ,choices:['dev','QA','prod','QAT'] ,description: '')
+     }
+     stages{
+         stage('clone'){
+             steps{
+                 echo 'testing clone'
+                 print book_name
+                 print stage_name
+                 print env_name
+             }
+         }
+         stage('testing'){
+             steps{
+                 echo 'testing agent'
+                 echo "$BUILD_NUMBER"
+                 print BUILD_ID
+                }
+         }
+     }
+ }
